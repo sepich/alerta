@@ -1,0 +1,9 @@
+Dockerfile
+LICENSE
+MANIFEST.in
+Makefile
+NOTICE
+README.md
+.*
+*.pyc
+tmp/

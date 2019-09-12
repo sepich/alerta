@@ -1,0 +1,35 @@
+version: '3.1'
+services:
+  alerta-be:
+    container_name: alerta-be
+    build: .
+    image: sepa/alerta-be
+    volumes:
+      - ./tmp/alertad.conf:/app/alertad.conf
+      - ./tmp/alerta.conf:/app/alerta.conf
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo
+    environment:
+      - DEBUG=1  # remove this line to turn DEBUG off
+      # - BASE_URL=/alerta/api  # NOTE: must end in '/api' then web URL will be '/alerta'
+      # - DATABASE_URL=mongodb://mongo:27017/monitoring
+    restart: always
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    command:
+      - --wiredTigerCacheSizeGB=0.05
+    volumes:
+      - ./tmp/mongo:/data/db
+    restart: always
+
+  alerta-web:
+    container_name: alerta-web
+    image: alerta/alerta-beta
+    volumes:
+      - ./tmp/config.json:/usr/share/nginx/html/config.json
+    ports:
+      - 80:80

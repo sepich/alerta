@@ -175,6 +175,7 @@ class Backend(Database):
         """
         query = {
             'environment': alert.environment,
+            'service': alert.service,
             'resource': alert.resource,
             'event': alert.event,
             'severity': alert.severity,

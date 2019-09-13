@@ -6,10 +6,8 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt && pip install uwsgi python-ldap
 
 COPY . /app
-RUN chgrp -R 0 /app && \
-    chmod -R g=u /app && \
-    useradd -u 1001 -g 0 alerta
-USER 1001
+RUN adduser --uid 1001 --system alerta && chown -R 1001 /app /home/alerta
+USER alerta
 
 ENV ALERTA_SVR_CONF_FILE /app/alertad.conf
 ENV ALERTA_CONF_FILE /app/alerta.conf

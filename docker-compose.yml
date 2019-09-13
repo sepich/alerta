@@ -13,8 +13,9 @@ services:
       - mongo
     environment:
       - DEBUG=1  # remove this line to turn DEBUG off
-      # - BASE_URL=/alerta/api  # NOTE: must end in '/api' then web URL will be '/alerta'
       # - DATABASE_URL=mongodb://mongo:27017/monitoring
+      - BASE_URL=/api
+      - INSTALL_PLUGINS=prometheus,zabbix
     restart: always
 
   mongo:

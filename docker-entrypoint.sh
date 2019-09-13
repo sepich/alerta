@@ -31,7 +31,7 @@ if [ ! -f "${RUN_ONCE}" ]; then
   for plugin in ${INSTALL_PLUGINS}
   do
     echo "Installing plugin '${plugin}'"
-    pip install git+https://github.com/alerta/alerta-contrib.git#subdirectory=plugins/$plugin
+    pip install --user git+https://github.com/alerta/alerta-contrib.git#subdirectory=plugins/$plugin
   done
   touch ${RUN_ONCE}
 fi

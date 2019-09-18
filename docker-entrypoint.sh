@@ -53,4 +53,9 @@ EOF
   fi
 fi
 
+while true; do
+    alerta housekeeping
+    sleep 120
+done &
+
 exec "$@"

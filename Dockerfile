@@ -3,7 +3,7 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y mongo-tools gettext libldap2-dev libsasl2-dev
 COPY requirements.txt /app/requirements.txt
-RUN pip install -r requirements.txt && pip install uwsgi python-ldap
+RUN pip install -r requirements.txt && pip install uwsgi python-ldap alerta
 
 COPY . /app
 RUN adduser --uid 1001 --system alerta && chown -R 1001 /app /home/alerta
